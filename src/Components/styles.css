@@ -1,0 +1,38 @@
+.button {
+    display: inline-block;
+    width: 75px;
+    height: 20px;
+    background-color: rgb(160, 160, 253);
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin-left: 10px;
+}
+
+.input {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.form {
+    display: inline-block;
+    width: 250px;
+    outline: 1px solid grey;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+h3 {
+    font-weight: normal;
+    margin-bottom: 0;
+}
