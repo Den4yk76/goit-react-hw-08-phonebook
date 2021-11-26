@@ -32,6 +32,9 @@ import {
   PURGE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+// =======
+import { contactsApiSlice } from './slices';
+//========
 
 const authPersistConfig = {
   key: 'authToken',
@@ -44,13 +47,14 @@ const authPersistReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: authPersistReducer,
+    [contactsApiSlice.reducerPath]: contactsApiSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, REGISTER, PAUSE, PERSIST, PURGE],
       },
-    }),
+    }).concat(contactsApiSlice.middleware),
 });
 
 export const persistor = persistStore(store);

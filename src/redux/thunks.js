@@ -1,4 +1,5 @@
 import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
+import { connect, useDispatch } from 'react-redux';
 
 const BASE_USER_URL = 'https://connections-api.herokuapp.com';
 const userRegister = '/users/signup';
@@ -51,22 +52,26 @@ export const currentThunk = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
     const token = state.auth.token;
-    if (!token || token === '') return;
-    console.log('a mne poh');
-    try {
-      const response = await fetch(BASE_USER_URL + userCurrent, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      console.log('currentThunk data', data); // {user: {name: "", email: ""},}
-      return data; // action.payload
-    } catch (err) {
-      console.log('err', err.message);
-      rejectWithValue(err.message);
+    console.log('currentThunk token', token);
+    if (!token) {
+      console.log('Huinia kakaia-to');
+      return;
+    } else {
+      try {
+        const response = await fetch(BASE_USER_URL + userCurrent, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        console.log('currentThunk data', data); // {user: {name: "", email: ""},}
+        return data; // action.payload
+      } catch (err) {
+        console.log('err', err.message);
+        rejectWithValue(err.message);
+      }
     }
   },
 );

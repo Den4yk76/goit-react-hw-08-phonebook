@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { registerThunk, loginThunk, currentThunk, logoutThunk } from './thunks';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -9,10 +10,9 @@ const authSlice = createSlice({
       email: '',
     },
     token: '',
-    error: '',
+    err: '',
     isLoading: false,
     isAuth: false,
-    myProp: 'Hello',
   },
   reducers: {
     renameProp: (state, action) => {
@@ -86,7 +86,7 @@ const authSlice = createSlice({
         ...state,
         isLoading: false,
         error: action.payload,
-        isAuth: true, /////// Под вопросом
+        isAuth: false, /////// Под вопросом
       };
     },
     [logoutThunk.pending](state, action) {
@@ -118,5 +118,59 @@ export const { renameProp } = authSlice.actions;
 export default authSlice.reducer;
 
 //====================== Contacts =======================
-const BASE_CONTACT_URL = 'https://619362fcd3ae6d0017da852d.mockapi.io/';
+const BASE_CONTACT_URL = 'https://619362fcd3ae6d0017da852d.mockapi.io';
 const contacts = '/contacts';
+
+export const contactsApiSlice = createApi({
+  reducerPath: 'contactsApi',
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_CONTACT_URL }),
+  tagTypes: ['Conts'],
+  endpoints: builder => {
+    return {
+      //action
+      fetchContacts: builder.query({
+        query: () => contacts,
+        providesTags: (result, err, arg) => {
+          return [
+            ...result.map(({ id }) => {
+              return {
+                type: 'Conts',
+                id,
+              };
+            }),
+          ];
+        },
+      }),
+      addContact: builder.mutation({
+        query: contact => {
+          return {
+            method: `POST`,
+            url: contacts,
+            body: contact,
+          };
+        },
+        invalidatesTags: ['Conts'],
+      }),
+      removeContact: builder.mutation({
+        query: id => {
+          return {
+            url: `${contacts}/${id}`,
+            method: `DELETE`,
+          };
+        },
+        invalidatesTags: (res, err, id) => [
+          {
+            type: 'Conts',
+            id,
+          },
+        ],
+      }),
+    };
+  },
+});
+
+export const {
+  useFetchContactsQuery,
+  useAddContactMutation,
+  useRemoveContactMutation,
+} = contactsApiSlice;
