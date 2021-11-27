@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import { PrivateRoute } from './routers/PrivateRoute';
 import { PublicRoute } from './routers/PublicRoute';
 import { PhonePage } from './pages/PhonePage.jsx';
+import WelocmePage from './components/WelocmePage';
 import { fetchCurrentUser } from './redux/operation';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +38,7 @@ export default function App() {
 
       <main>
         <Routes>
+          <Route path="/" element={<PublicRoute component={WelocmePage} />} />
           <Route
             path="/register"
             element={<PublicRoute component={Registration} />}

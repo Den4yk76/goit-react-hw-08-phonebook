@@ -1,0 +1,12 @@
+.welcomePage {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+
+    margin-top: 150px;
+    
+}
