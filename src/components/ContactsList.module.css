@@ -1,0 +1,95 @@
+.form {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  text-align: center;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  margin-top: 30px;
+   -webkit-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.35);
+}
+
+.input {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 30px;
+  display: block;
+}
+
+.label {
+  display: block;
+  text-align: left;
+  margin-left: 46px;
+  /* margin-top: 20px; */
+}
+
+.AddContactButton {
+  width: 308px;
+  height: 35px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  background-color: rgb(76, 194, 76);
+  border: none;
+}
+
+.AddContactButton:hover,
+.AddContactButton:focus {
+  background-color: rgb(99, 195, 233);
+}
+
+.list {
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  /* border: rgb(20, 20, 19) solid 1px; */
+  padding: 0;
+}
+
+.listItem:not(:last-child) {
+  border-bottom: 1px solid rgb(76, 194, 76);
+}
+
+.listItem {
+  padding-left: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.listItem:nth-child(even) {
+  /* background-color: azure; */
+  background-color: white;
+
+}
+
+.listItem:nth-child(odd) {
+  /* background-color: rgb(178, 231, 231); */
+  background-color: white;
+}
+
+.deleteButton {
+  margin-right: 20px;
+}
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: rgb(99, 195, 233);
+}
+
+.deleteButton,
+.button {
+  transition-property: background-color;
+  transition-duration: 300ms;
+  font-size: 15px;
+  height: 22px;
+  background-color: rgb(76, 194, 76);
+  border: none;
+  color: white;
+}

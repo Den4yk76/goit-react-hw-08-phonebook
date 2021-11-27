@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  background-color: white;
+}
+.innerContainerLeft {
+  margin-left: 50px;
+}
+.innerContainerRight {
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}
+.secondText,
+.firstText {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.secondText:hover, .secondText:focus,
+.firstText:hover, .firstText:focus {
+  color: rgb(76, 194, 76);;
+}
+
+
+.firstText {
+  margin-right: 20px;
+}
+.active {
+  color: rgb(190, 220, 20);
+}
+.button {
+  transition-property: background-color;
+  transition-duration: 300ms;
+  font-size: 20px;
+  height: 28px;
+  background-color: rgb(76, 194, 76);
+  border: none;
+  color: white;
+}
+.button:hover,
+.button:focus {
+  background-color: rgb(255, 0, 0);
+}
