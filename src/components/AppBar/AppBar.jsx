@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import style from './style.module.css';
 import { useSelector } from 'react-redux';
 import { Navigation } from './Navigation';
-import { Greetings } from './Greetings';
+import { UserMenu } from './UserMenu';
 // import { Navigate } from "react-router-dom";
 // import { useEffect } from "react";
 
@@ -19,7 +19,7 @@ export function AppBar() {
         </NavLink>
       </div>
 
-      {isAuth ? <Greetings /> : <Navigation />}
+      {isAuth ? <UserMenu /> : <Navigation />}
     </header>
   );
 }

@@ -3,7 +3,7 @@ import style from './style.module.css';
 import { fetchLogout } from '../../redux/operation';
 import { useDispatch } from 'react-redux';
 
-export function Greetings() {
+export function UserMenu() {
     const dispatch = useDispatch();
     const name = useSelector((state => state.userData.name));
     const token = useSelector(state => state.token);
