@@ -1,14 +1,16 @@
 import style from './style.module.css';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubmitUser } from '../../redux/operation';
+import { Navigate } from "react-router-dom";
 
 export function Registration() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
+  const isAuth = useSelector((state => state.isAuth));
+  
   const handleChangeAllInput = ev => {
     switch (ev.target.name) {
       case 'name':
@@ -22,7 +24,7 @@ export function Registration() {
         break;
 
       default:
-        alert('WTF ???');
+        alert('Default Alert!');
         break;
     }
   };
@@ -30,6 +32,7 @@ export function Registration() {
   const submitUser = () => dispatch(fetchSubmitUser({ name, email, password }));
 
   return (
+    <>
     <form
       className={style.form}
       onSubmit={e => {
@@ -83,6 +86,8 @@ export function Registration() {
       <button className={style.AuthButton} type="submit">
         Register
       </button>
-    </form>
+      </form>
+      { isAuth && <Navigate to="/contacts" /> }
+      </>
   );
 }
